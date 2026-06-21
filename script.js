@@ -200,7 +200,54 @@ function closePortfolio() {
 
 // Close modal on Escape key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closePortfolio();
+    if (e.key === 'Escape') {
+        if (modal.classList.contains('active')) closePortfolio();
+        if (document.getElementById('projectModal')?.classList.contains('active')) closeProjectModal();
     }
 });
+
+// ==================== PROJECT MODAL LOGIC ====================
+const projectImages = {
+    "p9":  ["1.jpeg", "2.jpeg"],
+    "p6":  ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg"],
+    "p10": ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg"],
+    "p4":  ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg"],
+    "p1":  ["1.jpeg", "2.jpeg", "565.jpeg", "WhatsApp Image 2026-06-20 at 9.49.05 AM.jpeg", "WhatsApp Image 2026-06-20 at 9.49.06 AM.jpeg", "WhatsApp Image 2026-06-20 at 9.49.07 AM.jpeg"],
+    "p2":  ["1.jpeg", "10.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "6.jpeg", "7.jpeg", "8.jpeg", "9.jpeg"],
+    "p7":  ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg"],
+    "p8":  ["1.jpeg", "2.jpeg", "3.jpeg"],
+    "p11": ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg", "another p11.jpeg"],
+    "p5":  ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg", "7.jpeg"],
+    "p3":  ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg"]
+};
+
+function openProjectModal(projectId, projectTitle) {
+    const pModal = document.getElementById('projectModal');
+    const titleEl = document.getElementById('modalProjectTitle');
+    const galleryEl = document.getElementById('modalImageGallery');
+    
+    if (!pModal) return;
+    
+    titleEl.textContent = projectTitle;
+    galleryEl.innerHTML = '';
+    
+    const images = projectImages[projectId] || [];
+    images.forEach(imgName => {
+        const img = document.createElement('img');
+        img.src = `assest/project/${projectId}/${imgName}`;
+        img.alt = `${projectTitle} Image`;
+        img.loading = 'lazy';
+        galleryEl.appendChild(img);
+    });
+    
+    pModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+    const pModal = document.getElementById('projectModal');
+    if (pModal) {
+        pModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
