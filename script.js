@@ -251,3 +251,27 @@ function closeProjectModal() {
         document.body.style.overflow = '';
     }
 }
+
+// ==================== WHATSAPP CONTACT FORM LOGIC ====================
+function sendWhatsApp(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('wa-name').value;
+    const email = document.getElementById('wa-email').value;
+    const phone = document.getElementById('wa-phone').value;
+    const message = document.getElementById('wa-message').value;
+    
+    // Tech Binders WhatsApp Number
+    const whatsappNumber = "919790876317";
+    
+    // Construct the WhatsApp message
+    const whatsappMessage = `*New Contact Inquiry*\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Message:* ${message}`;
+    
+    // Encode the message and build the URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in a new tab
+    window.open(whatsappURL, '_blank');
+}
+
