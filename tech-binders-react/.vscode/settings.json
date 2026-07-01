@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "*.html": "html",
+    "*.js": "javascript",
+    "*.jsx": "javascriptreact"
+  },
+  "dart.analyzeExcludedFolders": [
+    "d:/projests/development/website/website/website/Tech Binders/Tech Binders/tech-binders-react"
+  ]
+}
